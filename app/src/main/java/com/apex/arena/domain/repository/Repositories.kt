@@ -17,6 +17,7 @@ interface AuthRepository {
 
 interface TournamentRepository {
     fun getTournaments(searchQuery: String = "", filterFormat: String? = null): Flow<List<Tournament>>
+    val registeredTournamentIds: Flow<Set<String>>
     suspend fun getTournamentById(id: String): Result<Tournament>
     suspend fun registerForTournament(tournamentId: String, userId: String): Result<Unit>
     suspend fun leaveTournament(tournamentId: String, userId: String): Result<Unit>

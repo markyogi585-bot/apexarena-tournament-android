@@ -64,6 +64,9 @@ class AuthRepositoryImpl : AuthRepository {
 }
 
 class TournamentRepositoryImpl : TournamentRepository {
+    private val _registeredIds = MutableStateFlow<Set<String>>(setOf("t1"))
+    override val registeredTournamentIds: Flow<Set<String>> = _registeredIds.asStateFlow()
+
     private val sampleTournaments = listOf(
         Tournament(
             id = "t1",
@@ -74,7 +77,7 @@ class TournamentRepositoryImpl : TournamentRepository {
             entryFee = 0.0,
             prizePool = 50000.0,
             maxParticipants = 32,
-            currentParticipants = 24,
+            currentParticipants = 25,
             rulesText = "Standard Esports rules. Squad of 4. Emulators strictly prohibited. Anti-cheat mandatory.",
             startTime = "Today, 8:00 PM IST",
             registrationDeadline = "Today, 7:00 PM IST"
@@ -123,10 +126,12 @@ class TournamentRepositoryImpl : TournamentRepository {
     }
 
     override suspend fun registerForTournament(tournamentId: String, userId: String): Result<Unit> {
+        _registeredIds.value = _registeredIds.value + tournamentId
         return Result.success(Unit)
     }
 
     override suspend fun leaveTournament(tournamentId: String, userId: String): Result<Unit> {
+        _registeredIds.value = _registeredIds.value - tournamentId
         return Result.success(Unit)
     }
 }

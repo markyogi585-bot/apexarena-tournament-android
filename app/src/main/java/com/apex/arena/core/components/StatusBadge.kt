@@ -26,7 +26,8 @@ enum class BadgeStatus {
     REGISTRATION_OPEN,
     CANCELLED,
     SOLO,
-    SQUAD
+    SQUAD,
+    JOINED
 }
 
 @Composable
@@ -42,6 +43,7 @@ fun StatusBadge(
         BadgeStatus.CANCELLED -> Triple(CrimsonError.copy(alpha = 0.2f), CrimsonError, "CANCELLED")
         BadgeStatus.SOLO -> Triple(Color(0xFF38BDF8).copy(alpha = 0.2f), Color(0xFF38BDF8), "SOLO")
         BadgeStatus.SQUAD -> Triple(Color(0xFFA855F7).copy(alpha = 0.2f), Color(0xFFA855F7), "SQUAD")
+        BadgeStatus.JOINED -> Triple(EmeraldSuccess.copy(alpha = 0.25f), EmeraldSuccess, "✓ JOINED")
     }
 
     Box(

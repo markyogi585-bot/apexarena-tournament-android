@@ -19,6 +19,7 @@ import com.apex.arena.data.repository.MatchRepositoryImpl
 import com.apex.arena.data.repository.NotificationRepositoryImpl
 import com.apex.arena.data.repository.ProfileRepositoryImpl
 import com.apex.arena.data.repository.TournamentRepositoryImpl
+import com.apex.arena.data.repository.WalletRepositoryImpl
 import com.apex.arena.presentation.auth.AuthViewModel
 import com.apex.arena.presentation.auth.LoginScreen
 import com.apex.arena.presentation.auth.RegisterScreen
@@ -39,19 +40,22 @@ import com.apex.arena.presentation.tournaments.TournamentBracketScreen
 import com.apex.arena.presentation.tournaments.TournamentDetailScreen
 import com.apex.arena.presentation.tournaments.TournamentListScreen
 import com.apex.arena.presentation.tournaments.TournamentViewModel
+import com.apex.arena.presentation.wallet.WalletScreen
+import com.apex.arena.presentation.wallet.WalletViewModel
 
 @Composable
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    // Single-instance repositories for container-free deterministic resolution
+    // Single-instance repositories for deterministic resolution
     val authRepo = remember { AuthRepositoryImpl() }
     val tournamentRepo = remember { TournamentRepositoryImpl() }
     val matchRepo = remember { MatchRepositoryImpl() }
     val leaderboardRepo = remember { LeaderboardRepositoryImpl() }
     val profileRepo = remember { ProfileRepositoryImpl() }
     val notificationRepo = remember { NotificationRepositoryImpl() }
+    val walletRepo = remember { WalletRepositoryImpl() }
 
     // ViewModels
     val authViewModel = remember { AuthViewModel(authRepo) }
@@ -61,6 +65,7 @@ fun AppNavHost(
     val leaderboardViewModel = remember { LeaderboardViewModel(leaderboardRepo) }
     val notificationViewModel = remember { NotificationViewModel(notificationRepo) }
     val profileViewModel = remember { ProfileViewModel(profileRepo, authRepo) }
+    val walletViewModel = remember { WalletViewModel(walletRepo) }
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -124,6 +129,7 @@ fun AppNavHost(
                         navController.navigate(Screen.TournamentDetails.createRoute(id))
                     },
                     onNavigateToNotifications = { navController.navigate(Screen.Notifications.route) },
+                    onNavigateToWallet = { navController.navigate(Screen.Wallet.route) },
                     viewModel = homeViewModel
                 )
             }
@@ -196,10 +202,18 @@ fun AppNavHost(
                 )
             }
 
+            composable(Screen.Wallet.route) {
+                WalletScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    viewModel = walletViewModel
+                )
+            }
+
             composable(Screen.Profile.route) {
                 ProfileScreen(
                     onNavigateToEditProfile = { navController.navigate(Screen.EditProfile.route) },
                     onNavigateToSettings = { navController.navigate(Screen.Settings.route) },
+                    onNavigateToWallet = { navController.navigate(Screen.Wallet.route) },
                     onLoggedOut = {
                         navController.navigate(Screen.Login.route) {
                             popUpTo(0) { inclusive = true }

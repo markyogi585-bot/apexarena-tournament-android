@@ -12,9 +12,8 @@ import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
 
 object SupabaseClientProvider {
-    // Parameterized configuration with defaults
-    private const val SUPABASE_URL = "https://your-project.supabase.co"
-    private const val SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy_anon_key_for_build"
+    const val SUPABASE_URL = "https://kuhhlykxyheatmhipfzs.supabase.co"
+    const val SUPABASE_ANON_KEY = "sb_publishable_qqAu2_b1_zpJfHiQqwzr7A_VyWRtKgi"
 
     val client: SupabaseClient by lazy {
         createSupabaseClient(

@@ -16,10 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBalanceWallet
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Logout
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -166,11 +163,11 @@ fun ProfileScreen(
             Spacer(modifier = Modifier.height(Dimensions.spaceM))
 
             // Quick Hub Rows
-            ProfileMenuRow(title = "My Esports Squads", icon = androidx.compose.material.icons.Icons.Default.Shield, onClick = onNavigateToTeams)
-            ProfileMenuRow(title = "KYC Identity Compliance", icon = androidx.compose.material.icons.Icons.Default.Security, onClick = onNavigateToKyc)
-            ProfileMenuRow(title = "Daily Streaks & Arena Pass", icon = androidx.compose.material.icons.Icons.Default.Stars, onClick = onNavigateToRewards)
-            ProfileMenuRow(title = "Help & Support Center", icon = androidx.compose.material.icons.Icons.Default.Help, onClick = onNavigateToFaq)
-            ProfileMenuRow(title = "Fair Play & Anti-Cheat Policy", icon = androidx.compose.material.icons.Icons.Default.Gavel, onClick = onNavigateToTerms)
+            ProfileMenuRow(title = "My Esports Squads", icon = Icons.Default.Shield, onClick = onNavigateToTeams)
+            ProfileMenuRow(title = "KYC Identity Compliance", icon = Icons.Default.Security, onClick = onNavigateToKyc)
+            ProfileMenuRow(title = "Daily Streaks & Arena Pass", icon = Icons.Default.Stars, onClick = onNavigateToRewards)
+            ProfileMenuRow(title = "Help & Support Center", icon = Icons.Default.Help, onClick = onNavigateToFaq)
+            ProfileMenuRow(title = "Fair Play & Anti-Cheat Policy", icon = Icons.Default.Gavel, onClick = onNavigateToTerms)
 
             Spacer(modifier = Modifier.height(Dimensions.spaceM))
 

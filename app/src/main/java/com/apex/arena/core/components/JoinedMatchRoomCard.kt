@@ -15,18 +15,18 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ContentCopy
-import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.MeetingRoom
-import androidx.compose.material.icons.filled.VpnKey
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,13 +43,19 @@ import com.apex.arena.core.theme.TextMuted
 
 @Composable
 fun JoinedMatchRoomCard(
-    tournamentTitle: String,
-    roomId: String = "8941 2093",
-    roomPassword: String = "apex2026",
-    slotNumber: String = "Slot #07",
+    tournamentTitle: String = "Apex Champions Pro League 2026",
+    roomId: String = "ARENA-ROOM-8821",
+    roomPass: String = "APEX-PASS-2026",
+    roomPassword: String = roomPass,
+    slotNumber: Any = "Slot #12",
     startTime: String = "Starts in 15m",
     modifier: Modifier = Modifier
 ) {
+    val clipboard = LocalClipboardManager.current
+    var isCopied by remember { mutableStateOf(false) }
+
+    val slotDisplay = if (slotNumber is Int) "Slot #$slotNumber" else slotNumber.toString()
+
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -93,7 +99,7 @@ fun JoinedMatchRoomCard(
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "$slotNumber • $startTime",
+                text = "$slotDisplay • $startTime",
                 color = SoftLilac,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.SemiBold
@@ -120,13 +126,16 @@ fun JoinedMatchRoomCard(
                 }
 
                 IconButton(
-                    onClick = {},
+                    onClick = {
+                        clipboard.setText(AnnotatedString("Room: $roomId Pass: $roomPassword"))
+                        isCopied = true
+                    },
                     modifier = Modifier.size(36.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Default.ContentCopy,
                         contentDescription = "Copy Credentials",
-                        tint = SoftLilac
+                        tint = if (isCopied) EmeraldSuccess else SoftLilac
                     )
                 }
             }

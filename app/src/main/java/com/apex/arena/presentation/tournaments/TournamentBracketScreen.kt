@@ -91,8 +91,8 @@ fun TournamentBracketScreen(
                 BracketRoundColumn(
                     roundTitle = "SEMI FINALS",
                     matches = listOf(
-                        Match("b1", tournamentId, "", 2, 1, "GodLike Esports", "TBD", null, null, 0, 0, null, "SCHEDULED", "Next Round"),
-                        Match("b2", tournamentId, "", 2, 2, "ApexStriker", "TBD", null, null, 0, 0, null, "SCHEDULED", "Next Round")
+                        Match(id = "b1", tournamentId = tournamentId, roundNumber = 2, matchOrder = 1, participantAName = "GodLike Esports", participantBName = "TBD", status = "SCHEDULED", scheduledTime = "Next Round"),
+                        Match(id = "b2", tournamentId = tournamentId, roundNumber = 2, matchOrder = 2, participantAName = "ApexStriker", participantBName = "TBD", status = "SCHEDULED", scheduledTime = "Next Round")
                     )
                 )
 
@@ -100,7 +100,7 @@ fun TournamentBracketScreen(
                 BracketRoundColumn(
                     roundTitle = "GRAND FINALS",
                     matches = listOf(
-                        Match("b3", tournamentId, "", 3, 1, "TBD", "TBD", null, null, 0, 0, null, "SCHEDULED", "Championship")
+                        Match(id = "b3", tournamentId = tournamentId, roundNumber = 3, matchOrder = 1, participantAName = "TBD", participantBName = "TBD", status = "SCHEDULED", scheduledTime = "Championship")
                     )
                 )
             }

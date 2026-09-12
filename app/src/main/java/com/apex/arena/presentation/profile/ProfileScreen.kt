@@ -16,11 +16,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Logout
-import androidx.compose.material.icons.filled.Palette
-import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,7 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -56,6 +54,7 @@ import com.apex.arena.core.theme.TextMuted
 fun ProfileScreen(
     onNavigateToEditProfile: () -> Unit,
     onNavigateToSettings: () -> Unit,
+    onNavigateToWallet: () -> Unit,
     onLoggedOut: () -> Unit,
     viewModel: ProfileViewModel
 ) {
@@ -153,6 +152,13 @@ fun ProfileScreen(
                 }
             }
             Spacer(modifier = Modifier.height(Dimensions.spaceL))
+
+            // Wallet Shortcut Card
+            ApexPrimaryButton(
+                text = "OPEN GLADIATOR WALLET & PASSBOOK",
+                onClick = onNavigateToWallet
+            )
+            Spacer(modifier = Modifier.height(Dimensions.spaceM))
 
             // Action Buttons
             ApexOutlinedButton(

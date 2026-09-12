@@ -67,6 +67,7 @@ fun HomeScreen(
     onNavigateToTournamentDetails: (String) -> Unit,
     onNavigateToNotifications: () -> Unit,
     onNavigateToWallet: () -> Unit,
+    onNavigateToSearch: () -> Unit = {},
     viewModel: HomeViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -139,6 +140,14 @@ fun HomeScreen(
                 }
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(onClick = onNavigateToSearch) {
+                        Icon(
+                            imageVector = androidx.compose.material.icons.Icons.Default.Search,
+                            contentDescription = "Search",
+                            tint = TextCrisp
+                        )
+                    }
+
                     // Quick Wallet Pill
                     Row(
                         modifier = Modifier
@@ -164,7 +173,7 @@ fun HomeScreen(
                         )
                     }
 
-                    Spacer(modifier = Modifier.width(6.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
                     IconButton(onClick = onNavigateToNotifications) {
                         Icon(
                             imageVector = Icons.Default.Notifications,

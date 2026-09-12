@@ -1,38 +1,63 @@
-# Arena Screen Specification & Information Architecture
+# Apex Arena — Screen Inventory & Specs (40 Screens)
 
-## 1. Screen Matrix
+## 1. Authentication & Onboarding
+- **`SplashScreen`**: Cold-boot brand screen with smooth 1.2s timeout, gradient radial glow, and auto-routing.
+- **`WelcomeScreen`**: 3-slide esports hero onboarding with value proposition, free registration CTA, and login.
+- **`LoginScreen`**: Obsidian Neon card, email/password validation, biometric shortcut, error banner.
+- **`RegisterScreen`**: Gamertag, Email, Password strength meter, referral code input, and fair play terms checkbox.
+- **`ForgotPasswordScreen`**: Email OTP dispatcher with validation.
+- **`VerificationOtpScreen`**: 6-digit numeric keypad OTP validator with auto-advance.
+- **`ResetPasswordScreen`**: Secure password update form with matching verification.
+- **`SessionExpiredScreen`**: Security modal screen prompting re-authentication.
 
-### Onboarding & Authentication
-* **`LoginScreen`**: Fast email & password authentication with password toggle.
-* **`RegisterScreen`**: Gladiator tag registration, email binding, and welcome bonus trigger.
+## 2. Command Center & Search
+- **`HomeScreen`**: Master dashboard with live ticker, live match pulse banner, quick actions, tier division card, and featured tournaments.
+- **`GlobalSearchScreen`**: Debounced search across tournaments, teams, and players with category tabs.
 
-### Command Center (Home)
-* **`HomeScreen`**:
-  * Top bar: Gladiator Avatar, welcome greeting, Live Wallet Balance Pill (`₹1,650`), Notification bell.
-  * Live Broadcast Announcement Ticker (System updates & Match notices).
-  * Division Tier Banner (`DIAMOND DIVISION` - 2,450 APEX PTS).
-  * **"Your Joined Match Rooms"** (Shows live room ID & password countdown for joined tournaments).
-  * Featured Tournaments Carousel.
-  * Live Battles Heartbeat Pulse Feed.
+## 3. Tournaments
+- **`TournamentListScreen`**: Category filters (BGMI, Free Fire, Valorant, COD), status badges, and pull-to-refresh.
+- **`TournamentDetailScreen`**: Hero banner, prize pool, slot capacity, rules CTA, and sticky registration bar.
+- **`TournamentRulesScreen`**: Anti-cheat policy, room credentials policy, and scoring matrix.
+- **`TournamentScheduleScreen`**: Round-by-round time slots and room opening timeline.
+- **`TournamentParticipantsScreen`**: Registered squad rosters, slot numbers, and captain verification badges.
+- **`TournamentBracketScreen`**: Dynamic horizontal scroll bracket tree (Quarter, Semi, Finals) with winner highlight.
+- **`JoinTournamentScreen`**: Squad roster selector, fee confirmation, and rule agreement checkbox.
+- **`JoinSuccessScreen`**: Celebratory state view with slot number and match lobby link.
 
-### Tournaments & Brackets
-* **`TournamentListScreen`**: Search bar, Format filter chips (All, Solo, Squad), Prize pool & slot meters.
-* **`TournamentDetailScreen`**: Hero banner, rules breakdown, participant counter, **Sticky Join / Joined State Bar**.
-* **`TournamentBracketScreen`**: Horizontal elimination tree (Quarterfinals, Semifinals, Grand Finals) with live match scores.
+## 4. Matches & Live Room
+- **`MatchesScreen`**: Tabbed interface (Upcoming, Live, Completed).
+- **`MatchDetailScreen`**: Map, server, ping, slot, and scheduled time.
+- **`LiveMatchRoomScreen`**: Realtime room ID & password, live kill feed, and standings.
+- **`MatchDisputeScreen`**: Formal dispute ticket submission with screenshot proof upload and reason category.
 
-### Matches & Live Room Center
-* **`MatchesScreen`**: Segmented tab controls (Upcoming/Live vs Completed).
-* **`MatchDetailScreen`**: Scoreboard duel arena, slot credentials, screenshot dispute filing.
+## 5. Leaderboards
+- **`LeaderboardScreen`**: Global, Game-specific, and Season rank ladder with user sticky card.
 
-### Fintech Wallet & Rewards
-* **`WalletScreen`**:
-  * Metallic Obsidian Card with balance eye-toggle.
-  * Breakdown: Unlocked Winnings, Deposits, Bonus Cash.
-  * Add Money Bottom Sheet with quick amount chips (`₹50`, `₹100`, `₹250`, `₹500`).
-  * Instant UPI Withdrawal Bottom Sheet.
-  * Live Double-entry Transaction Passbook.
+## 6. Fintech Wallet & Passbook
+- **`WalletScreen`**: Privacy eye balance toggle, quick action grid, and passbook preview.
+- **`AddCashScreen`**: Instant UPI QR, PhonePe/GPay/Paytm, Credit/Debit cards, and Netbanking.
+- **`WithdrawScreen`**: Instant IMPS bank transfer & UPI VPA payout with fee calculator.
+- **`KycVerificationScreen`**: PAN/Aadhaar/Passport compliance upload for payouts.
+- **`TransactionHistoryScreen`**: Double-entry ledger passbook with date filter.
+- **`TransactionDetailScreen`**: Transaction receipt, UTR reference, and gateway status.
 
-### Leaderboard, Notifications & Profile
-* **`LeaderboardScreen`**: Global ladder with Gold, Silver, Bronze badges, player tiers, and win rates.
-* **`NotificationScreen`**: Category filters (All, Matches, Tournaments, Rewards) + "Mark All Read".
-* **`ProfileScreen`**: Player stats matrix (Wins, Losses, Win-Rate, Points), in-game UID editor, OLED Dark settings.
+## 7. Rewards & Achievements
+- **`RewardsOverviewScreen`**: 7-day daily login streak calendar and milestone claim.
+- **`AchievementTreeScreen`**: Tiered achievement branch (First Blood, Centurion, MVP, High Roller).
+- **`AchievementDetailScreen`**: Progress bar, badge tier, and reward unlock claim.
+
+## 8. Teams & Rosters
+- **`MyTeamsScreen`**: Esports squad list, captain badges, and win rates.
+- **`TeamDetailScreen`**: Active roster (4/5), match statistics, and roles.
+- **`CreateTeamScreen`**: Squad name, clan tag, and registration.
+- **`TeamInvitesScreen`**: Pending squad invites with Accept/Decline action.
+
+## 9. Notifications
+- **`NotificationScreen`**: Categorized inbox (Matches, Rewards, Teams, Announcements) with swipe-to-read.
+
+## 10. Profile & Settings
+- **`ProfileScreen`**: Player dossier, win rate, rank badge, and quick hub menu.
+- **`EditProfileScreen`**: GamerTag, in-game ID, bio, and avatar customizer.
+- **`SettingsScreen`**: Dark/Light mode toggle, notifications, and security.
+- **`SupportFaqScreen`**: Interactive accordion FAQ and help center.
+- **`TermsPrivacyScreen`**: Fair Play policy, anti-cheat terms, and legal privacy.

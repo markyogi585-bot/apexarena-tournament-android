@@ -55,6 +55,11 @@ fun ProfileScreen(
     onNavigateToEditProfile: () -> Unit,
     onNavigateToSettings: () -> Unit,
     onNavigateToWallet: () -> Unit,
+    onNavigateToTeams: () -> Unit = {},
+    onNavigateToKyc: () -> Unit = {},
+    onNavigateToRewards: () -> Unit = {},
+    onNavigateToFaq: () -> Unit = {},
+    onNavigateToTerms: () -> Unit = {},
     onLoggedOut: () -> Unit,
     viewModel: ProfileViewModel
 ) {
@@ -160,6 +165,15 @@ fun ProfileScreen(
             )
             Spacer(modifier = Modifier.height(Dimensions.spaceM))
 
+            // Quick Hub Rows
+            ProfileMenuRow(title = "My Esports Squads", icon = androidx.compose.material.icons.Icons.Default.Shield, onClick = onNavigateToTeams)
+            ProfileMenuRow(title = "KYC Identity Compliance", icon = androidx.compose.material.icons.Icons.Default.Security, onClick = onNavigateToKyc)
+            ProfileMenuRow(title = "Daily Streaks & Arena Pass", icon = androidx.compose.material.icons.Icons.Default.Stars, onClick = onNavigateToRewards)
+            ProfileMenuRow(title = "Help & Support Center", icon = androidx.compose.material.icons.Icons.Default.Help, onClick = onNavigateToFaq)
+            ProfileMenuRow(title = "Fair Play & Anti-Cheat Policy", icon = androidx.compose.material.icons.Icons.Default.Gavel, onClick = onNavigateToTerms)
+
+            Spacer(modifier = Modifier.height(Dimensions.spaceM))
+
             // Action Buttons
             ApexOutlinedButton(
                 text = "Edit Profile & In-Game ID",
@@ -173,6 +187,37 @@ fun ProfileScreen(
                 borderColor = CrimsonError
             )
             Spacer(modifier = Modifier.height(Dimensions.spaceXL))
+        }
+    }
+}
+
+@Composable
+fun ProfileMenuRow(
+    title: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 8.dp)
+            .border(1.dp, BorderViolet.copy(alpha = 0.5f), RoundedCornerShape(10.dp)),
+        shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(containerColor = MidnightCard),
+        onClick = onClick
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(14.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Icon(icon, contentDescription = null, tint = NeonViolet, modifier = Modifier.size(20.dp))
+                Text(title, color = TextCrisp, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            }
+            Icon(androidx.compose.material.icons.Icons.Default.ChevronRight, contentDescription = null, tint = TextMuted, modifier = Modifier.size(18.dp))
         }
     }
 }

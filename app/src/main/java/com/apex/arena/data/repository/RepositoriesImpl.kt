@@ -440,11 +440,11 @@ class LeaderboardRepositoryImpl(
     override fun getTopPlayers(category: String): Flow<List<Profile>> = flow {
         emit(
             listOf(
-                Profile("p-1", "JonathanGaming", "Jonathan Gaming", "jonathan@arena.gg", "Grandmaster", 5840, 1, 142, 18, 160),
-                Profile("p-2", "Mortal77", "Naman Mathur", "mortal@arena.gg", "Master", 5120, 2, 128, 24, 152),
-                Profile("p-3", "ScoutOP", "Tanmay Singh", "scout@arena.gg", "Master", 4980, 3, 115, 30, 145),
-                Profile("p-4", "GoblinGamer", "Harsh Paudwal", "goblin@arena.gg", "Diamond I", 4650, 4, 98, 22, 120),
-                Profile("user-demo-123", "ApexShadow", "Apex Shadow", "apexshadow@arena.gg", "Diamond II", 2450, 14, 42, 12, 58)
+                Profile(id = "p-1", username = "JonathanGaming", displayName = "Jonathan Gaming", email = "jonathan@arena.gg", tier = "Grandmaster", points = 5840, rank = 1, wins = 142, losses = 18, tournamentsPlayed = 160),
+                Profile(id = "p-2", username = "Mortal77", displayName = "Naman Mathur", email = "mortal@arena.gg", tier = "Master", points = 5120, rank = 2, wins = 128, losses = 24, tournamentsPlayed = 152),
+                Profile(id = "p-3", username = "ScoutOP", displayName = "Tanmay Singh", email = "scout@arena.gg", tier = "Master", points = 4980, rank = 3, wins = 115, losses = 30, tournamentsPlayed = 145),
+                Profile(id = "p-4", username = "GoblinGamer", displayName = "Harsh Paudwal", email = "goblin@arena.gg", tier = "Diamond I", points = 4650, rank = 4, wins = 98, losses = 22, tournamentsPlayed = 120),
+                Profile(id = "user-demo-123", username = "ApexShadow", displayName = "Apex Shadow", email = "apexshadow@arena.gg", tier = "Diamond II", points = 2450, rank = 14, wins = 42, losses = 12, tournamentsPlayed = 58)
             )
         )
     }

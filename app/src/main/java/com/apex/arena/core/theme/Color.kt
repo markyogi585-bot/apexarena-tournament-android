@@ -24,3 +24,18 @@ val EmeraldSuccess = Color(0xFF10B981)
 val CrimsonError = Color(0xFFEF4444)
 val AmberWarning = Color(0xFFF59E0B)
 val CyanGlow = Color(0xFF06B6D4)
+
+// Standard Aliases for Arena Design System
+val ArenaDarkBase = ObsidianDark
+val ArenaDarkSurface = MidnightCard
+val ArenaDarkSurfaceElevated = ElevatedSurface
+val ArenaBorder = BorderViolet
+val ArenaPurplePrimary = NeonViolet
+val ArenaPurpleLight = SoftLilac
+val ArenaAccentRose = RadiantRose
+val ArenaTextPrimary = TextCrisp
+val ArenaTextSecondary = SoftLilac
+val ArenaTextMuted = TextMuted
+val ArenaGreenSuccess = EmeraldSuccess
+val ArenaErrorRed = CrimsonError
+val ArenaWarningAmber = AmberWarning

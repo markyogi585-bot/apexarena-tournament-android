@@ -1,20 +1,14 @@
 package com.apex.arena.core.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,12 +18,14 @@ import com.apex.arena.core.theme.RadiantRose
 import com.apex.arena.core.theme.TextCrisp
 
 @Composable
-fun ApexPrimaryButton(
+fun ApexButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     isLoading: Boolean = false,
+    leadingIcon: ImageVector? = null,
+    trailingIcon: ImageVector? = null,
     containerColor: Color = NeonViolet
 ) {
     Button(
@@ -53,14 +49,44 @@ fun ApexPrimaryButton(
                 strokeWidth = 2.dp
             )
         } else {
-            Text(
-                text = text.uppercase(),
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                leadingIcon?.let {
+                    Icon(it, contentDescription = null, modifier = Modifier.size(18.dp))
+                }
+                Text(
+                    text = text,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 0.5.sp
+                )
+                trailingIcon?.let {
+                    Icon(it, contentDescription = null, modifier = Modifier.size(18.dp))
+                }
+            }
         }
     }
+}
+
+@Composable
+fun ApexPrimaryButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    isLoading: Boolean = false,
+    containerColor: Color = NeonViolet
+) {
+    ApexButton(
+        text = text,
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        isLoading = isLoading,
+        containerColor = containerColor
+    )
 }
 
 @Composable
@@ -71,7 +97,7 @@ fun ApexAccentButton(
     enabled: Boolean = true,
     isLoading: Boolean = false
 ) {
-    ApexPrimaryButton(
+    ApexButton(
         text = text,
         onClick = onClick,
         modifier = modifier,

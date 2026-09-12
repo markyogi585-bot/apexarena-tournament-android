@@ -27,7 +27,11 @@ enum class BadgeStatus {
     CANCELLED,
     SOLO,
     SQUAD,
-    JOINED
+    JOINED,
+    OPEN,
+    FULL,
+    ALIVE,
+    ELIMINATED
 }
 
 @Composable
@@ -36,11 +40,12 @@ fun StatusBadge(
     modifier: Modifier = Modifier
 ) {
     val (bgColor, textColor, label) = when (status) {
-        BadgeStatus.LIVE -> Triple(EmeraldSuccess.copy(alpha = 0.2f), EmeraldSuccess, "● LIVE")
+        BadgeStatus.LIVE, BadgeStatus.ALIVE -> Triple(EmeraldSuccess.copy(alpha = 0.2f), EmeraldSuccess, "● LIVE")
         BadgeStatus.UPCOMING -> Triple(NeonViolet.copy(alpha = 0.2f), NeonViolet, "UPCOMING")
         BadgeStatus.COMPLETED -> Triple(Color.Gray.copy(alpha = 0.2f), Color.LightGray, "COMPLETED")
-        BadgeStatus.REGISTRATION_OPEN -> Triple(AmberWarning.copy(alpha = 0.2f), AmberWarning, "OPEN")
-        BadgeStatus.CANCELLED -> Triple(CrimsonError.copy(alpha = 0.2f), CrimsonError, "CANCELLED")
+        BadgeStatus.REGISTRATION_OPEN, BadgeStatus.OPEN -> Triple(AmberWarning.copy(alpha = 0.2f), AmberWarning, "OPEN")
+        BadgeStatus.CANCELLED, BadgeStatus.ELIMINATED -> Triple(CrimsonError.copy(alpha = 0.2f), CrimsonError, if (status == BadgeStatus.ELIMINATED) "ELIMINATED" else "CANCELLED")
+        BadgeStatus.FULL -> Triple(CrimsonError.copy(alpha = 0.2f), CrimsonError, "FULL")
         BadgeStatus.SOLO -> Triple(Color(0xFF38BDF8).copy(alpha = 0.2f), Color(0xFF38BDF8), "SOLO")
         BadgeStatus.SQUAD -> Triple(Color(0xFFA855F7).copy(alpha = 0.2f), Color(0xFFA855F7), "SQUAD")
         BadgeStatus.JOINED -> Triple(EmeraldSuccess.copy(alpha = 0.25f), EmeraldSuccess, "✓ JOINED")
@@ -60,4 +65,26 @@ fun StatusBadge(
             letterSpacing = 0.5.sp
         )
     }
+}
+
+@Composable
+fun StatusBadge(
+    status: String,
+    modifier: Modifier = Modifier
+) {
+    val badgeStatus = when (status.uppercase()) {
+        "LIVE" -> BadgeStatus.LIVE
+        "ALIVE" -> BadgeStatus.ALIVE
+        "UPCOMING", "SCHEDULED" -> BadgeStatus.UPCOMING
+        "COMPLETED" -> BadgeStatus.COMPLETED
+        "OPEN", "REGISTRATION_OPEN" -> BadgeStatus.OPEN
+        "FULL" -> BadgeStatus.FULL
+        "CANCELLED" -> BadgeStatus.CANCELLED
+        "ELIMINATED" -> BadgeStatus.ELIMINATED
+        "SOLO" -> BadgeStatus.SOLO
+        "SQUAD" -> BadgeStatus.SQUAD
+        "JOINED" -> BadgeStatus.JOINED
+        else -> BadgeStatus.UPCOMING
+    }
+    StatusBadge(status = badgeStatus, modifier = modifier)
 }

@@ -44,7 +44,8 @@ fun ApexTextField(
     isError: Boolean = false,
     errorMessage: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    isPassword: Boolean = false
+    isPassword: Boolean = false,
+    singleLine: Boolean = true
 ) {
     var passwordVisible by remember { mutableStateOf(!isPassword) }
 
@@ -73,7 +74,7 @@ fun ApexTextField(
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = if (isPassword) KeyboardOptions(keyboardType = KeyboardType.Password) else keyboardOptions,
             isError = isError,
-            singleLine = true,
+            singleLine = singleLine,
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MidnightCard,
                 unfocusedContainerColor = MidnightCard,

@@ -40,7 +40,7 @@ class AuthViewModelTest {
 
         val state = viewModel.uiState.value
         assertTrue(state.isAuthenticated)
-        assertEquals("ApexStriker", state.userProfile?.username)
+        assertEquals("striker", state.userProfile?.username)
     }
 
     @Test
